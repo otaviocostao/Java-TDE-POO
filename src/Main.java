@@ -26,6 +26,15 @@ public class Main {
                     main.novoEmprestimo();
                     break;
                 case 4:
+                    main.listarFunciariosCad();
+                    break;
+                case 5:
+                    main.listarEquipamentosCad();
+                    break;
+                case 6:
+                    main.listarEmprestimosCad();
+                    break;
+                case 7:
                     break;
             }
             System.out.println("Deseja sair do sistema? [0]Não [1]Sim: ");
@@ -55,7 +64,7 @@ public class Main {
     public void cadastrarEquipamento(){
         scanner.nextLine();
         System.out.println("--- Cadastrar equipamento ---");
-        System.out.println("Digite o cóodigo do equipamento: ");
+        System.out.println("Digite o código do equipamento: ");
         String codEqpTemp = scanner.nextLine();
         System.out.println("Digite a descrição do equipamento: ");
         String descricaoEqpTemp = scanner.nextLine();
@@ -92,11 +101,53 @@ public class Main {
         listaEmprestimentos.add(new Emprestimos(dataSaidaTemp, dataRetornoTemp, funcionarioRespTemp, obsEmprestimoTemp));
     }
 
+    public void listarFunciariosCad(){
+        int indexFinalFunc = listaFuncionarios.size() - 1;
+
+        if (indexFinalFunc==-1){
+            System.out.println("Não foi cadastrado nenhum funcionário.");
+        }else{
+            for(int i=0; i<=indexFinalFunc; i++){
+                listaFuncionarios.get(i).infoFuncionario();
+            }
+        }
+    }
+
+
+    public void listarEquipamentosCad(){
+        int indexFinalEqp = listaEquipamentos.size() - 1;
+
+        if (indexFinalEqp<0){
+            System.out.println("Não foi cadastrado nenhum equipamento.");
+        }else{
+            for(int i=0; i<=indexFinalEqp; i++){
+                listaEquipamentos.get(i).infoEquipamento();
+            }
+        }
+    }
+
+
+    public void listarEmprestimosCad(){
+        int indexFinalEmp = listaEmprestimentos.size() - 1;
+
+        if (indexFinalEmp<0){
+            System.out.println("Não foi cadastrado nenhum emprestimo.");
+        }else{
+            for(int i=0; i<=indexFinalEmp; i++){
+                listaEmprestimentos.get(i).infoEmprestimo();
+            }
+        }
+    }
+
     public void menu(){
         System.out.println("--- MENU ---");
-        System.out.println("[1] - Cadastrar funcionário");
+        System.out.println("[1] - Cadastrar novo funcionário");
         System.out.println("[2] - Cadastrar novo equipamento");
         System.out.println("[3] - Cadastrar novo emprestimo");
+        System.out.println("[4] - Listar funcionários cadastrados");
+        System.out.println("[5] - Listar equipamentos cadastrados");
+        System.out.println("[6] - Listar emprestimos de equipamentos");
+        System.out.println("[7] - Sair");
         System.out.println("Digite a opção desejada:");
     }
 }
