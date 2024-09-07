@@ -84,6 +84,12 @@ public class Equipamento {
         return estadoConservacaoEqp;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        String temp = (String) obj;
+        return temp.equals(this.codEquipamento);
+    }
+
     public void infoEquipamento(){
         System.out.println("--- Informações do equipamento ---");
         System.out.println("Código: "+ this.codEquipamento);

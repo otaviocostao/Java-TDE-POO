@@ -2,12 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
-    ArrayList<Equipamento> listaEquipamentos = new ArrayList<>();
-    ArrayList<Emprestimos> listaEmprestimentos = new ArrayList<>();
-
     Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
         Main main = new Main();
         int sair = 0;
@@ -17,7 +12,7 @@ public class Main {
             opcao = main.scanner.nextInt();
             switch (opcao){
                 case 1:
-                    main.cadastrarFuncionario();
+                    GerenciadorTrackBug.cadastrarFuncionario();
                     break;
                 case 2:
                     main.cadastrarEquipamento();
@@ -26,7 +21,7 @@ public class Main {
                     main.novoEmprestimo();
                     break;
                 case 4:
-                    main.listarFunciariosCad();
+                    main.listarFuncionariosCad();
                     break;
                 case 5:
                     main.listarEquipamentosCad();
@@ -35,6 +30,10 @@ public class Main {
                     main.listarEmprestimosCad();
                     break;
                 case 7:
+                    main.buscarFuncionario();
+                    break;
+                case 8:
+                    main.buscarEquipamento();
                     break;
             }
             System.out.println("Deseja sair do sistema? [0]Não [1]Sim: ");
@@ -45,22 +44,7 @@ public class Main {
         main.scanner.close();
     }
 
-
-    public void cadastrarFuncionario(){
-        scanner.nextLine();
-        System.out.println("--- Cadastrar novo funcionario ---");
-        System.out.println("Digite o código do funcionario: ");
-        String codFuncionarioTemp = scanner.nextLine();
-        System.out.println("Digite o nome do funcionário: ");
-        String nomeFuncionarioTemp = scanner.nextLine();
-        System.out.println("Digite a função do funcionáro: ");
-        String funcaoFuncionarioTemp = scanner.nextLine();
-        System.out.println("Digite a data de admissão: ");
-        String dataAdmissaoTemp = scanner.nextLine();
-
-        listaFuncionarios.add(new Funcionario(codFuncionarioTemp, nomeFuncionarioTemp, funcaoFuncionarioTemp, dataAdmissaoTemp));
-    }
-
+    // Função para cadastrar novo equipamento
     public void cadastrarEquipamento(){
         scanner.nextLine();
         System.out.println("--- Cadastrar equipamento ---");
@@ -86,6 +70,7 @@ public class Main {
 
     }
 
+    // Função para cadastrar novo emprestimo de equipamento
     public void novoEmprestimo(){
         scanner.nextLine();
         System.out.println("--- Novo emprestimo ---");
@@ -101,7 +86,8 @@ public class Main {
         listaEmprestimentos.add(new Emprestimos(dataSaidaTemp, dataRetornoTemp, funcionarioRespTemp, obsEmprestimoTemp));
     }
 
-    public void listarFunciariosCad(){
+    //Função para listar os funcionarios cadastrados
+    public void listarFuncionariosCad(){
         int indexFinalFunc = listaFuncionarios.size() - 1;
 
         if (indexFinalFunc==-1){
@@ -113,7 +99,7 @@ public class Main {
         }
     }
 
-
+    // Função para listar os equipamento cadastrados
     public void listarEquipamentosCad(){
         int indexFinalEqp = listaEquipamentos.size() - 1;
 
@@ -126,7 +112,7 @@ public class Main {
         }
     }
 
-
+    //Função para listar os emprestimos cadastrados
     public void listarEmprestimosCad(){
         int indexFinalEmp = listaEmprestimentos.size() - 1;
 
@@ -139,6 +125,55 @@ public class Main {
         }
     }
 
+    //Função para buscar funcionario pelo codFuncionario
+    public void buscarFuncionario(){
+        scanner.nextLine(); // Limpar buffer do input
+        System.out.println("Digite o codigo do funcionario que deseja buscar: ");
+        String codBusca = scanner.nextLine(); // Variavel que será buscada
+
+        int posicao = -1; // Posição inicial se o vetor está vazio
+
+        for (int i=0; i<listaFuncionarios.size(); i++){ // For para percorrer a lista de elementos
+            Funcionario funcionarioBusca = listaFuncionarios.get(i); // Objeto temporario usado para comparar os elementos
+
+            if (funcionarioBusca.getCodFuncionario().equals(codBusca)){ // Valida se o cod do objeto do vetor é igual ao digitado
+                posicao=i; // Se for verdadeiro a variavel "posição" armazena o indice encontrado
+                break;
+            }
+        }
+
+        if (posicao != -1){ // Se "posição" não for "-1" o objeto foi encontrado
+            listaFuncionarios.get(posicao).infoFuncionario(); // Exibir as informações do equipamento no indice
+        }else{ // caso "posição" seja "-1" entrará no Else
+            System.out.println("Funcionario não encontrado.");
+        }
+    }
+
+    //Função para buscar equipamento
+    public void buscarEquipamento(){
+        scanner.nextLine(); // Limpar buffer do input
+        System.out.println("Digite o codigo do Equipamento que deseja buscar: ");
+        String codBusca = scanner.nextLine(); // Variavel que será buscada
+
+        int posicao = -1; // Posição inicial se o vetor está vazio
+
+        for (int i=0; i<listaFuncionarios.size(); i++){ // For para percorrer a lista de elementos
+            Funcionario funcionarioBusca = listaFuncionarios.get(i); // Objeto temporario usado para comparar os elementos
+
+            if (funcionarioBusca.getCodFuncionario().equals(codBusca)){ // Valida se o cod do objeto do vetor é igual ao digitado
+                posicao=i; // Se for verdadeiro a variavel "posição" armazena o indice encontrado
+                break;
+            }
+        }
+
+        if (posicao != -1){ // Se "posição" não for "-1" o objeto foi encontrado
+            listaFuncionarios.get(posicao).infoFuncionario(); // Exibir as informações do equipamento no indice
+        }else{ // caso "posição" seja "-1" entrará no Else
+            System.out.println("Equipamento não encontrado.");
+        }
+    }
+
+    // Função para exibir informações do menu;
     public void menu(){
         System.out.println("--- MENU ---");
         System.out.println("[1] - Cadastrar novo funcionário");
@@ -147,7 +182,8 @@ public class Main {
         System.out.println("[4] - Listar funcionários cadastrados");
         System.out.println("[5] - Listar equipamentos cadastrados");
         System.out.println("[6] - Listar emprestimos de equipamentos");
-        System.out.println("[7] - Sair");
+        System.out.println("[7] - Buscar funcionario pelo código");
+        System.out.println("[8] - Buscar equipamento pelo código");
         System.out.println("Digite a opção desejada:");
     }
 }
