@@ -1,9 +1,13 @@
 public class Funcionario {
+
+    // Declaração de variaveis privadas
+    // Elas só podem ser acessadas dentro da classe
     private String codFuncionario;
     private String nomeFuncionario;
     private String funcaoFuncionario;
     private String dataAdmissaoFuncionario;
 
+    // Metodo construtor da classe Funcionario
     public Funcionario(String codFuncionario, String nomeFuncionario, String funcaoFuncionario, String dataAdmissaoFuncionario){
         this.codFuncionario = codFuncionario;
         this.nomeFuncionario = nomeFuncionario;
@@ -11,6 +15,7 @@ public class Funcionario {
         this.dataAdmissaoFuncionario = dataAdmissaoFuncionario;
     }
 
+    // Metodos Setters
     public void setCodFuncionario(String codFuncionario) {
         this.codFuncionario = codFuncionario;
     }
@@ -27,6 +32,7 @@ public class Funcionario {
         this.dataAdmissaoFuncionario = dataAdmissaoFuncionario;
     }
 
+    // Metodos Getters
     public String getCodFuncionario() {
         return codFuncionario;
     }
@@ -43,6 +49,7 @@ public class Funcionario {
         return dataAdmissaoFuncionario;
     }
 
+    // Metodo para exibir informações do funcionarios
     public void infoFuncionario(){
         System.out.println("--- Informações do funcionário ---");
         System.out.println("Código: "+ this.codFuncionario);

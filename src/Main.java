@@ -16,7 +16,7 @@ public class Main {
         int opcao;
 
         do {
-            exibirMenu(); // Exibir os prints do Menu
+            GerenciadorStatic.exibirMenu(); // Exibir os prints do Menu
             opcao = scanner.nextInt(); // Ler a opção no menu
             scanner.nextLine(); // Limpar o buffer de entrada
 
@@ -40,10 +40,13 @@ public class Main {
                     gerenciadorEmprestimos.listarEmprestimosCad(); //Função para listar emprestimos
                     break;
                 case 7:
-                    buscarFuncionario(); // Buscar funcionario pelo código
+                    GerenciadorStatic.buscarFuncionario(scanner, gerenciadorFuncionarios); // Buscar funcionario pelo código
                     break;
                 case 8:
-                    buscarEquipamento(); // Buscar equipamento pelo código
+                    GerenciadorStatic.buscarEquipamento(scanner, gerenciadorEquipamentos); // Buscar equipamento pelo código
+                    break;
+                case 9:
+                    System.out.println("Saindo");
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -52,50 +55,9 @@ public class Main {
             System.out.println("Deseja sair do sistema? [0]Não [1]Sim: ");
             sair = scanner.nextInt(); // Opção para sair do while
 
-        } while (sair == 0); // ecerramento do laço
+        } while (sair == 0); // encerramento do laço
 
         scanner.close(); // fechando o scanner
     }
 
-    // Função para exibir o menu
-    public void exibirMenu() {
-        System.out.println("--- MENU ---");
-        System.out.println("[1] - Cadastrar novo funcionário");
-        System.out.println("[2] - Cadastrar novo equipamento");
-        System.out.println("[3] - Cadastrar novo empréstimo");
-        System.out.println("[4] - Listar funcionários cadastrados");
-        System.out.println("[5] - Listar equipamentos cadastrados");
-        System.out.println("[6] - Listar empréstimos de equipamentos");
-        System.out.println("[7] - Buscar funcionário pelo código");
-        System.out.println("[8] - Buscar equipamento pelo código");
-        System.out.println("Digite a opção desejada: ");
-    }
-
-    // Buscar funcionário pelo código
-    public void buscarFuncionario() {
-        System.out.println("Digite o código do funcionário que deseja buscar: ");
-        String codBuscaFunc = scanner.nextLine(); // Variável que será buscada
-
-        Funcionario funcionarioEncontrado = gerenciadorFuncionarios.buscarFuncionario(codBuscaFunc); // Instanciando um funcionario temporário
-
-        if (funcionarioEncontrado != null) { // Caso encontre o funcionário
-            funcionarioEncontrado.infoFuncionario(); // metodo de funcionario para exibir as informações
-        } else { // caso não encontre o funcionario
-            System.out.println("Funcionário não encontrado.");
-        }
-    }
-
-    // Buscar equipamento pelo código
-    public void buscarEquipamento() {
-        System.out.println("Digite o código do equipamento que deseja buscar: ");
-        String codBuscaEqp = scanner.nextLine(); // Variável que será buscada
-
-        Equipamento equipamentoEncontrado = gerenciadorEquipamentos.buscarEquipamento(codBuscaEqp);  // Instanciando um equipamento temporário
-
-        if (equipamentoEncontrado != null) {
-            equipamentoEncontrado.infoEquipamento(); // Metodo de equipamento para exibir as informações
-        } else {// caso não encontre o equipamento
-            System.out.println("Equipamento não encontrado.");
-        }
-    }
 }

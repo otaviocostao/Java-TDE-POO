@@ -1,4 +1,7 @@
 public class Equipamento {
+
+    // Declaração de variaveis privadas
+    // Elas só podem ser acessadas dentro da classe
     private String codEquipamento;
     private String descricaoEqp;
     private String dataCompraEqp;
@@ -8,7 +11,7 @@ public class Equipamento {
     private String historicoManutencaoEqp;
     private String estadoConservacaoEqp;
 
-
+    // Metodo construtor da classe Equipamento
     public Equipamento(String codEquipamento, String descricaoEqp, String dataCompraEqp, double pesoEqp, double larguraEqp, double comprimentoEqp, String historicoManutencaoEqp, String estadoConservacaoEqp){
         this.codEquipamento = codEquipamento;
         this.descricaoEqp = descricaoEqp;
@@ -19,6 +22,8 @@ public class Equipamento {
         this.historicoManutencaoEqp = historicoManutencaoEqp;
         this.estadoConservacaoEqp = estadoConservacaoEqp;
     }
+
+    // Metodos Setters
 
     public void setCodEquipamento(String codEquipamento) {
         this.codEquipamento = codEquipamento;
@@ -52,6 +57,7 @@ public class Equipamento {
         this.estadoConservacaoEqp = estadoConservacaoEqp;
     }
 
+    // Metodos Getters
     public String getCodEquipamento() {
         return codEquipamento;
     }
@@ -90,6 +96,7 @@ public class Equipamento {
         return temp.equals(this.codEquipamento);
     }
 
+    // Metodo para exibir informações de equipamentos
     public void infoEquipamento(){
         System.out.println("--- Informações do equipamento ---");
         System.out.println("Código: "+ this.codEquipamento);
