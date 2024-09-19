@@ -57,4 +57,5 @@ public class Funcionario {
         System.out.println("Função: "+ this.funcaoFuncionario);
         System.out.println("Data de admissão: "+ this.dataAdmissaoFuncionario + "\n");
     }
+
 }

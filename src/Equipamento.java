@@ -100,7 +100,7 @@ public class Equipamento {
     public void infoEquipamento(){
         System.out.println("--- Informações do equipamento ---");
         System.out.println("Código: "+ this.codEquipamento);
-        System.out.println("Descrição: "+ this.dataCompraEqp);
+        System.out.println("Descrição: "+ this.descricaoEqp);
         System.out.println("Data de compra: " + this.dataCompraEqp);
         System.out.println("Peso: "+ this.pesoEqp+"Kg");
         System.out.println("Largura: "+ this.larguraEqp);

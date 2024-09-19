@@ -28,7 +28,7 @@ public class Main {
                     gerenciadorEquipamentos.cadastrarEquipamento(scanner); // Função de cadastrar equipamento
                     break;
                 case 3:
-                    gerenciadorEmprestimos.novoEmprestimo(scanner); // Função de cadastrar Emprestimos
+                    gerenciadorEmprestimos.novoEmprestimo(scanner, gerenciadorFuncionarios,  gerenciadorEquipamentos); // Função de cadastrar Emprestimos
                     break;
                 case 4:
                     gerenciadorFuncionarios.listarFuncionariosCad(); // Função para listar funcionarios

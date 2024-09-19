@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class GerenciadorFuncionarios {
     private ArrayList<Funcionario> listaFuncionarios = new ArrayList<>(); // Criando o ArrayList de funcionarios
-
+    Scanner scanner1 = new Scanner(System.in);
     // Cadastrar novo funcionário
     public void cadastrarFuncionario(Scanner scanner) {
         System.out.println("--- Cadastrar novo funcionario ---");
@@ -58,5 +58,24 @@ public class GerenciadorFuncionarios {
                 funcTemp.infoFuncionario(); // Função para exibir os dados do objeto
             }
         }
+    }
+
+    public Funcionario selectFuncionariosCad() {
+        if (listaFuncionarios.isEmpty()) { // Verifica se  o Array está vazio
+            System.out.println("Não há funcionários cadastrados.");
+        } else { // Se o Array possuir elementos
+            int i=0;
+            for (Funcionario funcTemp : listaFuncionarios) { // For que percorre os objetos do ArrayList
+                String nomeTemp = funcTemp.getNomeFuncionario(); // Função para exibir os dados do objeto
+                String codTemp = funcTemp.getCodFuncionario();
+                System.out.println(i+1 + ". "+ nomeTemp + "COD: " + codTemp );
+                i++;
+            }
+            System.out.println("Digite o codigo desejado: ");
+            String codEscolha = scanner1.nextLine();
+
+            return buscarFuncionario(codEscolha);
+        }
+        return null;
     }
 }
