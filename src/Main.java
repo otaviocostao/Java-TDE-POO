@@ -1,17 +1,16 @@
 import java.util.Scanner;
 
 public class Main {
-    private Scanner scanner = new Scanner(System.in); // Instanciando um Scanner para fazer leitura do input
-    private GerenciadorFuncionarios gerenciadorFuncionarios = new GerenciadorFuncionarios(); // Instaciando a classe Gerenciador Funcionarios para usar suas funções
-    private GerenciadorEquipamentos gerenciadorEquipamentos = new GerenciadorEquipamentos(); // Instaciando a classe Gerenciador Equipamentos para usar suas funções
-    private GerenciadorEmprestimos gerenciadorEmprestimos = new GerenciadorEmprestimos(); // Instaciando a classe Gerenciador Emprestimos para usar suas funções
+    public static Scanner scanner = new Scanner(System.in); // Instanciando um Scanner para fazer leitura do input
+    public static GerenciadorFuncionarios gerenciadorFuncionarios = new GerenciadorFuncionarios(); // Instaciando a classe Gerenciador Funcionarios para usar suas funções
+    public static GerenciadorEquipamentos gerenciadorEquipamentos = new GerenciadorEquipamentos(); // Instaciando a classe Gerenciador Equipamentos para usar suas funções
+    public static GerenciadorEmprestimos gerenciadorEmprestimos = new GerenciadorEmprestimos(); // Instaciando a classe Gerenciador Emprestimos para usar suas funções
 
     public static void main(String[] args) {
-        Main main = new Main(); // Instanciando Main
-        main.iniciar(); // Iniciando a função com o Switch Case, menu e outras funções
+        iniciar(); // Iniciando a função com o Switch Case, menu e outras funções
     }
 
-    public void iniciar() {
+    public static void iniciar() {
         int sair = 0;
         int opcao;
 
@@ -28,7 +27,11 @@ public class Main {
                     gerenciadorEquipamentos.cadastrarEquipamento(scanner); // Função de cadastrar equipamento
                     break;
                 case 3:
-                    gerenciadorEmprestimos.novoEmprestimo(scanner, gerenciadorFuncionarios,  gerenciadorEquipamentos); // Função de cadastrar Emprestimos
+                    if (!gerenciadorFuncionarios.verListaVazia() && !gerenciadorEquipamentos.verListaVazia()){
+                        gerenciadorEmprestimos.novoEmprestimo(scanner, gerenciadorFuncionarios,  gerenciadorEquipamentos); // Função de cadastrar Emprestimos
+                    }else{
+                        System.out.println("Não é possivel realizar emprestimos, cadastre ao menos um funcionario e um equipamento");
+                    }
                     break;
                 case 4:
                     gerenciadorFuncionarios.listarFuncionariosCad(); // Função para listar funcionarios
@@ -46,7 +49,12 @@ public class Main {
                     GerenciadorStatic.buscarEquipamento(scanner, gerenciadorEquipamentos); // Buscar equipamento pelo código
                     break;
                 case 9:
-                    System.out.println("Saindo");
+                    gerenciadorFuncionarios.excluirFuncionario();
+                    break;
+                case 10:
+                    gerenciadorEquipamentos.excluirEquipamento();
+                    break;
+                case 11:
                     break;
                 default:
                     System.out.println("Opção inválida.");

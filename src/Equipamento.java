@@ -10,6 +10,7 @@ public class Equipamento {
     private double comprimentoEqp;
     private String historicoManutencaoEqp;
     private String estadoConservacaoEqp;
+    private String disponibilidade;
 
     // Metodo construtor da classe Equipamento
     public Equipamento(String codEquipamento, String descricaoEqp, String dataCompraEqp, double pesoEqp, double larguraEqp, double comprimentoEqp, String historicoManutencaoEqp, String estadoConservacaoEqp){
@@ -21,6 +22,7 @@ public class Equipamento {
         this.comprimentoEqp =comprimentoEqp;
         this.historicoManutencaoEqp = historicoManutencaoEqp;
         this.estadoConservacaoEqp = estadoConservacaoEqp;
+        this.disponibilidade = "disponivel";
     }
 
     // Metodos Setters
@@ -57,6 +59,10 @@ public class Equipamento {
         this.estadoConservacaoEqp = estadoConservacaoEqp;
     }
 
+    public void setDisponibilidade(String disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+
     // Metodos Getters
     public String getCodEquipamento() {
         return codEquipamento;
@@ -90,6 +96,10 @@ public class Equipamento {
         return estadoConservacaoEqp;
     }
 
+    public String getDisponibilidade() {
+        return disponibilidade;
+    }
+
     @Override
     public boolean equals(Object obj) {
         String temp = (String) obj;
@@ -106,6 +116,7 @@ public class Equipamento {
         System.out.println("Largura: "+ this.larguraEqp);
         System.out.println("Comprimento: "+ this.comprimentoEqp);
         System.out.println("Histórico de manutenção: "+ this.historicoManutencaoEqp);
-        System.out.println("Estado de conservação: "+this.estadoConservacaoEqp + "\n");
+        System.out.println("Estado de conservação: "+this.estadoConservacaoEqp);
+        System.out.println("Disponibilidade: " + this.disponibilidade + "\n");
     }
 }

@@ -14,7 +14,9 @@ public class GerenciadorStatic {
         System.out.println("[6] - Listar empréstimos de equipamentos");
         System.out.println("[7] - Buscar funcionário pelo código");
         System.out.println("[8] - Buscar equipamento pelo código");
-        System.out.println("[9] - Sair");
+        System.out.println("[9] - Remover funcionario");
+        System.out.println("[10] - Remover equipamento");
+        System.out.println("[11] - Sair");
         System.out.println("Digite a opção desejada: ");
     }
 

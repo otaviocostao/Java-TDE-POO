@@ -72,10 +72,38 @@ public class GerenciadorFuncionarios {
                 i++;
             }
             System.out.println("Digite o codigo desejado: ");
-            String codEscolha = scanner1.nextLine();
+            int funcSel = scanner1.nextInt();
 
-            return buscarFuncionario(codEscolha);
+            return listaFuncionarios.get(funcSel);
         }
         return null;
+    }
+
+    // Metodo publico que verifica se o array está vazio, pois o array é private
+    public boolean verListaVazia(){
+        if (listaFuncionarios.isEmpty()){ // if para checar o array com isEmpty
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    // Metodo para excluir funcionario da Lista
+    public void excluirFuncionario(){
+        if (verListaVazia()) { // Verifica se  o Array está vazio
+            System.out.println("Não há funcionários cadastrados.");
+        } else { // Se o Array possuir elementos
+            int i = 0;
+            for (Funcionario funcTemp : listaFuncionarios) { // For que percorre os objetos do ArrayList
+                String nomeTemp = funcTemp.getNomeFuncionario(); // Função para exibir os dados do objeto
+                String codTemp = funcTemp.getCodFuncionario();
+                System.out.println(i + 1 + ". " + nomeTemp + " COD: " + codTemp);
+                i++;
+            }
+        }
+            System.out.println("Digite o codigo desejado: ");
+            int funcSel = scanner1.nextInt();
+            System.out.println("O funcionario " + listaFuncionarios.get(funcSel).getNomeFuncionario() + " foi removido da lista de funcionarios");
+            listaFuncionarios.remove(funcSel);
     }
 }

@@ -69,23 +69,52 @@ public class GerenciadorEquipamentos {
         }
     }
 
-
     public Equipamento selectEquipamentosCad() {
         if (listaEquipamentos.isEmpty()) { // Verifica se  o Array está vazio
             System.out.println("Não há equipamentos cadastrados.");
         } else { // Se o Array possuir elementos
             int i=0;
-            for (Equipamento eqpTemp : listaEquipamentos) { // For que percorre os objetos do ArrayList
-                String nomeTemp = eqpTemp.getDescricaoEqp(); // Função para exibir os dados do objeto
-                String codTemp = eqpTemp.getCodEquipamento();
-                System.out.println(i+1 + ". "+ nomeTemp + "COD: " + codTemp );
+            for (Equipamento eqpTemp : listaEquipamentos) {// For que percorre os objetos do ArrayList
+                if (eqpTemp.getDisponibilidade().equals("disponivel")){
+                    String nomeTemp = eqpTemp.getDescricaoEqp(); // Função para exibir os dados do objeto
+                    String codTemp = eqpTemp.getCodEquipamento();
+                    System.out.println(i+1 + ". "+ nomeTemp + " | COD: " + codTemp );
+                }
                 i++;
             }
-            System.out.println("Digite o codigo desejado: ");
-            String codEscolha = scanner1.nextLine();
 
-            return buscarEquipamento(codEscolha);
+            System.out.println("Selecione o índice do equipamento desejado: ");
+            int eqpEscolha = scanner1.nextInt();
+            return listaEquipamentos.get(eqpEscolha);
         }
         return null;
+    }
+
+    // Metodo publico que verifica se o array está vazio, pois o array é private
+    public boolean verListaVazia(){
+        if (listaEquipamentos.isEmpty()){ // if para checar o array com isEmpty
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public void excluirEquipamento(){
+        if (verListaVazia()) { // Verifica se  o Array está vazio
+            System.out.println("Não há equipamentos cadastrados.");
+        } else { // Se o Array possuir elementos
+            int i = 0;
+            for (Equipamento eqpTemp : listaEquipamentos) { // For que percorre os objetos do ArrayList
+                String descTemp = eqpTemp.getDescricaoEqp(); // Função para exibir os dados do objeto
+                String codTemp = eqpTemp.getCodEquipamento();
+                System.out.println(i + 1 + ". " + descTemp + " | COD: " + codTemp);
+                i++;
+            }
+        }
+
+        System.out.println("Selecione o indice do equipamento que deseja remover: ");
+        int eqpSel = scanner1.nextInt();
+        System.out.println("O equipamento " + listaEquipamentos.get(eqpSel).getDescricaoEqp() + " foi removido da lista de equipamentos");
+        listaEquipamentos.remove(eqpSel);
     }
 }
