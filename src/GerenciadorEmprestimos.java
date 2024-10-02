@@ -33,7 +33,7 @@ public class GerenciadorEmprestimos {
         Emprestimos emprestimo1 = new Emprestimos(dataSaidaTemp, dataRetornoTemp, funcResp, eqpSel, obsEmprestimoTemp); // Instanciando um emprestimo
         listaEmprestimos.add(emprestimo1); // Adicionando o objeto instanciado no ArrayList
         gerenciadorEquipamentos.adicionarEqpIndisponivel(eqpSel);
-        gerenciadorEquipamentos.removeEquipamento(eqpSel);
+        gerenciadorEquipamentos.removeEquipamento(eqpSel.getCodEquipamento());
         emprestimo1.infoEmprestimo();
         scanner.nextLine();
     }

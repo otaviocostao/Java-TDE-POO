@@ -44,9 +44,16 @@ public class GerenciadorEquipamentos {
         listaEquipamentos.add(equipamento);
     }
 
-    public void removeEquipamento(Equipamento eqp){
-        listaEquipamentos.remove(eqp);
+    public void removeEquipamento(String codEquipamento) {
+        int index = listaEquipamentos.indexOf(codEquipamento); // O método indexOf agora funcionará corretamente
+        if (index != -1) {
+            listaEquipamentos.remove(index); // Remove o equipamento pelo índice
+            System.out.println("Equipamento removido com sucesso.");
+        } else {
+            System.out.println("Equipamento com código " + codEquipamento + " não encontrado.");
+        }
     }
+
 
     // Verificar se o código do equipamento já existe
     public boolean verificaCodEquipamento(String codEquipamento) {
@@ -74,6 +81,7 @@ public class GerenciadorEquipamentos {
         if (listaEquipamentos.isEmpty() && equipamentosIndisponiveis.isEmpty()) { // Verifica se  o Array está vazio
             System.out.println("Não há equipamentos cadastrados.");
         } else {
+            System.out.println("Equipamentos disponiveis:\n");
             for (Equipamento eqpTemp : listaEquipamentos) { // For que percorre os objetos do ArrayList
                 eqpTemp.infoEquipamento(); // Função para exibir os dados do objeto
             }
@@ -126,12 +134,12 @@ public class GerenciadorEquipamentos {
                 System.out.println(i + 1 + ". " + descTemp + " | COD: " + codTemp);
                 i++;
             }
-        }
 
         System.out.println("Selecione o indice do equipamento que deseja remover: ");
         int eqpSel = scanner1.nextInt();
         System.out.println("O equipamento " + listaEquipamentos.get(eqpSel).getDescricaoEqp() + " foi removido da lista de equipamentos");
         listaEquipamentos.remove(eqpSel);
+        }
     }
 
     public void adicionarEqpIndisponivel(Equipamento equipamento){
