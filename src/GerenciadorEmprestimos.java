@@ -32,8 +32,6 @@ public class GerenciadorEmprestimos {
 
         Emprestimos emprestimo1 = new Emprestimos(dataSaidaTemp, dataRetornoTemp, funcResp, eqpSel, obsEmprestimoTemp); // Instanciando um emprestimo
         listaEmprestimos.add(emprestimo1); // Adicionando o objeto instanciado no ArrayList
-        gerenciadorEquipamentos.adicionarEqpIndisponivel(eqpSel);
-        gerenciadorEquipamentos.removeEquipamento(eqpSel);
         emprestimo1.infoEmprestimo();
         scanner.nextLine();
     }
@@ -68,9 +66,8 @@ public class GerenciadorEmprestimos {
 
             Equipamento equipamentoEmp  = listaEmprestimos.get(empEscolha).getEquipamento(); // Armazenando o equipamento do emprestimo
             String codEqp = equipamentoEmp.getCodEquipamento(); //Get para pegar o cod do equipamento
-            equipamentoEmp.setDisponibilidade("disponivel"); // mudando a disponibilidade do equipamento
-            gerenciadorEquipamentos.adicionarEqp(equipamentoEmp);
-            gerenciadorEquipamentos.removeEquipamentoIndisponivel(equipamentoEmp);
+            gerenciadorEquipamentos.buscarEquipamento(codEqp).setDisponibilidade("disponivel"); // mudando a disponibilidade do equipamento
+
             listaEmprestimos.remove(empEscolha); //remove o emprestimo do ArrayList
         }
     }

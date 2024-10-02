@@ -1,12 +1,9 @@
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GerenciadorEquipamentos {
     private ArrayList<Equipamento> listaEquipamentos = new ArrayList<>(); //Criando o ArrayList de equipamentos
-    private ArrayList<Equipamento> equipamentosIndisponiveis = new ArrayList<>(); // ArrayList para os equipamentos indisponiveis
     Scanner scanner1 = new Scanner(System.in);
-
     // Cadastrar novo equipamento
     public void cadastrarEquipamento(Scanner scanner) {
         System.out.println("--- Cadastrar novo equipamento ---");
@@ -40,14 +37,6 @@ public class GerenciadorEquipamentos {
         listaEquipamentos.add(equipamento1); // Adicionando o objeto instanciado no ArrayList de equipamentos
     }
 
-    public void adicionarEqp(Equipamento equipamento){
-        listaEquipamentos.add(equipamento);
-    }
-
-    public void removeEquipamento(Equipamento eqp){
-        listaEquipamentos.remove(eqp);
-    }
-
     // Verificar se o código do equipamento já existe
     public boolean verificaCodEquipamento(String codEquipamento) {
         for (Equipamento eqpTemp : listaEquipamentos) { // For que percorre os objetos do ArrayList
@@ -71,15 +60,11 @@ public class GerenciadorEquipamentos {
 
     // Listar todos os equipamentos cadastrados
     public void listarEquipamentosCad() {
-        if (listaEquipamentos.isEmpty() && equipamentosIndisponiveis.isEmpty()) { // Verifica se  o Array está vazio
+        if (listaEquipamentos.isEmpty()) { // Verifica se  o Array está vazio
             System.out.println("Não há equipamentos cadastrados.");
         } else {
             for (Equipamento eqpTemp : listaEquipamentos) { // For que percorre os objetos do ArrayList
                 eqpTemp.infoEquipamento(); // Função para exibir os dados do objeto
-            }
-            System.out.println("\nEquipamentos indisponiveis:\n");
-            for (Equipamento eqpTemp : equipamentosIndisponiveis){
-                eqpTemp.infoEquipamento();
             }
         }
     }
@@ -114,7 +99,6 @@ public class GerenciadorEquipamentos {
         }
     }
 
-
     public void excluirEquipamento(){
         if (verListaVazia()) { // Verifica se  o Array está vazio
             System.out.println("Não há equipamentos cadastrados.");
@@ -132,14 +116,5 @@ public class GerenciadorEquipamentos {
         int eqpSel = scanner1.nextInt();
         System.out.println("O equipamento " + listaEquipamentos.get(eqpSel).getDescricaoEqp() + " foi removido da lista de equipamentos");
         listaEquipamentos.remove(eqpSel);
-    }
-
-    public void adicionarEqpIndisponivel(Equipamento equipamento){
-        equipamentosIndisponiveis.add(equipamento);
-    }
-
-
-    public void removeEquipamentoIndisponivel(Equipamento eqp){
-        listaEquipamentos.remove(eqp);
     }
 }

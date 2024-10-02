@@ -99,18 +99,12 @@ public class Equipamento {
     public String getDisponibilidade() {
         return disponibilidade;
     }
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;  // Verifica se os objetos são o mesmo
-        if (obj == null || getClass() != obj.getClass()) return false;  // Verifica se o tipo é diferente ou nulo
-
-        // Converte obj para Equipamento
-        Equipamento equipamento = (Equipamento) obj;
-
-        // Compara os códigos do equipamento
-        return this.codEquipamento.equals(equipamento.codEquipamento);  // Supondo que `codEquipamento` seja uma String
+        String temp = (String) obj;
+        return temp.equals(this.codEquipamento);
     }
-
 
     // Metodo para exibir informações de equipamentos
     public void infoEquipamento(){
