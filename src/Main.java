@@ -34,27 +34,29 @@ public class Main {
                     }
                     break;
                 case 4:
+                    gerenciadorEmprestimos.devolverEquipamento(scanner, gerenciadorEquipamentos);
+                case 5:
                     gerenciadorFuncionarios.listarFuncionariosCad(); // Função para listar funcionarios
                     break;
-                case 5:
+                case 6:
                     gerenciadorEquipamentos.listarEquipamentosCad(); // Função para listar equipamentos
                     break;
-                case 6:
+                case 7:
                     gerenciadorEmprestimos.listarEmprestimosCad(); //Função para listar emprestimos
                     break;
-                case 7:
+                case 8:
                     GerenciadorStatic.buscarFuncionario(scanner, gerenciadorFuncionarios); // Buscar funcionario pelo código
                     break;
-                case 8:
+                case 9:
                     GerenciadorStatic.buscarEquipamento(scanner, gerenciadorEquipamentos); // Buscar equipamento pelo código
                     break;
-                case 9:
+                case 10:
                     gerenciadorFuncionarios.excluirFuncionario();
                     break;
-                case 10:
+                case 11:
                     gerenciadorEquipamentos.excluirEquipamento();
                     break;
-                case 11:
+                case 12:
                     break;
                 default:
                     System.out.println("Opção inválida.");

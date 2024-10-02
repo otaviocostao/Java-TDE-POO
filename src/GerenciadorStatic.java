@@ -9,14 +9,15 @@ public class GerenciadorStatic {
         System.out.println("[1] - Cadastrar novo funcionário");
         System.out.println("[2] - Cadastrar novo equipamento");
         System.out.println("[3] - Cadastrar novo empréstimo");
-        System.out.println("[4] - Listar funcionários cadastrados");
-        System.out.println("[5] - Listar equipamentos cadastrados");
-        System.out.println("[6] - Listar empréstimos de equipamentos");
-        System.out.println("[7] - Buscar funcionário pelo código");
-        System.out.println("[8] - Buscar equipamento pelo código");
-        System.out.println("[9] - Remover funcionario");
-        System.out.println("[10] - Remover equipamento");
-        System.out.println("[11] - Sair");
+        System.out.println("[4] - Devolver equipamento emprestado");
+        System.out.println("[5] - Listar funcionários cadastrados");
+        System.out.println("[6] - Listar equipamentos cadastrados");
+        System.out.println("[7] - Listar empréstimos de equipamentos");
+        System.out.println("[8] - Buscar funcionário pelo código");
+        System.out.println("[9] - Buscar equipamento pelo código");
+        System.out.println("[10] - Remover funcionario");
+        System.out.println("[11] - Remover equipamento");
+        System.out.println("[12] - Sair");
         System.out.println("Digite a opção desejada: ");
     }
 
