@@ -83,9 +83,9 @@ public class GerenciadorEquipamentos {
                 i++;
             }
 
-            System.out.println("Selecione o índice do equipamento desejado: ");
-            int eqpEscolha = scanner1.nextInt();
-            return listaEquipamentos.get(eqpEscolha);
+            System.out.println("Digite o código do equipamento desejado: ");
+            String eqpEscolha = scanner1.nextLine();
+            return buscarEquipamento(eqpEscolha);
         }
         return null;
     }

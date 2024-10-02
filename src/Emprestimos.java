@@ -44,6 +44,14 @@ public class Emprestimos {
         return observacoesEmprestimo;
     }
 
+    public Equipamento getEquipamento() {
+        return equipamento;
+    }
+
+    public Funcionario getFuncionarioResponsavel() {
+        return funcionarioResponsavel;
+    }
+
     // Metodo para exibir informações do emprestimo
     public void infoEmprestimo(){
         System.out.println("--- Informações do emprestimo ---");

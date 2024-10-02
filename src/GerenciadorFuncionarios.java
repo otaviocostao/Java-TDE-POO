@@ -72,9 +72,10 @@ public class GerenciadorFuncionarios {
                 i++;
             }
             System.out.println("Digite o codigo desejado: ");
-            int funcSel = scanner1.nextInt();
+            String funcCod = scanner1.nextLine();
 
-            return listaFuncionarios.get(funcSel);
+            Funcionario funcTemp = buscarFuncionario(funcCod);
+            return funcTemp;
         }
         return null;
     }
@@ -97,9 +98,9 @@ public class GerenciadorFuncionarios {
             for (Funcionario funcTemp : listaFuncionarios) { // For que percorre os objetos do ArrayList
                 String nomeTemp = funcTemp.getNomeFuncionario(); // Função para exibir os dados do objeto
                 String codTemp = funcTemp.getCodFuncionario();
-                System.out.println(i + 1 + ". " + nomeTemp + " COD: " + codTemp);
-                i++;
+                System.out.println(i + ". " + nomeTemp + " COD: " + codTemp);
             }
+            i++;
         }
             System.out.println("Digite o codigo desejado: ");
             int funcSel = scanner1.nextInt();
