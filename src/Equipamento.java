@@ -100,11 +100,6 @@ public class Equipamento {
         return disponibilidade;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        String temp = (String) obj;
-        return temp.equals(this.codEquipamento);
-    }
 
     // Metodo para exibir informações de equipamentos
     public void infoEquipamento(){

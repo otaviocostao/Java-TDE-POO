@@ -35,6 +35,7 @@ public class Main {
                     break;
                 case 4:
                     gerenciadorEmprestimos.devolverEquipamento(scanner, gerenciadorEquipamentos);
+                    break;
                 case 5:
                     gerenciadorFuncionarios.listarFuncionariosCad(); // Função para listar funcionarios
                     break;

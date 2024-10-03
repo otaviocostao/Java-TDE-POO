@@ -32,6 +32,8 @@ public class GerenciadorEmprestimos {
 
         Emprestimos emprestimo1 = new Emprestimos(dataSaidaTemp, dataRetornoTemp, funcResp, eqpSel, obsEmprestimoTemp); // Instanciando um emprestimo
         listaEmprestimos.add(emprestimo1); // Adicionando o objeto instanciado no ArrayList
+        gerenciadorEquipamentos.adicionarEqpIndisponivel(eqpSel);
+        gerenciadorEquipamentos.removeEquipamento(eqpSel);
         emprestimo1.infoEmprestimo();
         scanner.nextLine();
     }
@@ -64,10 +66,13 @@ public class GerenciadorEmprestimos {
             int empEscolha = scanner.nextInt(); // indice do objeto
             empEscolha = empEscolha-1; //Pegar indice certo do Array
 
-            Equipamento equipamentoEmp  = listaEmprestimos.get(empEscolha).getEquipamento(); // Armazenando o equipamento do emprestimo
-            String codEqp = equipamentoEmp.getCodEquipamento(); //Get para pegar o cod do equipamento
-            gerenciadorEquipamentos.buscarEquipamento(codEqp).setDisponibilidade("disponivel"); // mudando a disponibilidade do equipamento
-
+            Emprestimos empTemp = listaEmprestimos.get(empEscolha);
+            empTemp.infoEmprestimo();
+            Equipamento equipamentoEmp  = empTemp.getEquipamento(); // Armazenando o equipamento do emprestimo
+            equipamentoEmp.infoEquipamento();
+            equipamentoEmp.setDisponibilidade("disponivel"); // mudando a disponibilidade do equipamento
+            gerenciadorEquipamentos.adicionarEqp(equipamentoEmp);
+            gerenciadorEquipamentos.removeEquipamentoIndisponivel(equipamentoEmp);
             listaEmprestimos.remove(empEscolha); //remove o emprestimo do ArrayList
         }
     }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class GerenciadorFuncionarios {
     private ArrayList<Funcionario> listaFuncionarios = new ArrayList<>(); // Criando o ArrayList de funcionarios
     Scanner scanner1 = new Scanner(System.in);
+
     // Cadastrar novo funcionário
     public void cadastrarFuncionario(Scanner scanner) {
         System.out.println("--- Cadastrar novo funcionario ---");
@@ -91,20 +92,22 @@ public class GerenciadorFuncionarios {
 
     // Metodo para excluir funcionario da Lista
     public void excluirFuncionario(){
-        if (verListaVazia()) { // Verifica se  o Array está vazio
-            System.out.println("Não há funcionários cadastrados.");
-        } else { // Se o Array possuir elementos
-            int i = 0;
-            for (Funcionario funcTemp : listaFuncionarios) { // For que percorre os objetos do ArrayList
-                String nomeTemp = funcTemp.getNomeFuncionario(); // Função para exibir os dados do objeto
-                String codTemp = funcTemp.getCodFuncionario();
-                System.out.println(i + ". " + nomeTemp + " COD: " + codTemp);
-            }
-            i++;
+        Funcionario funcionario = null;
+            if (verListaVazia()) { // Verifica se  o Array está vazio
+                System.out.println("Não há funcionários cadastrados.");
+            } else { // Se o Array possuir elementos
+                do {
+                    for (Funcionario funcTemp : listaFuncionarios) { // For que percorre os objetos do ArrayList
+                        String nomeTemp = funcTemp.getNomeFuncionario(); // Função para exibir os dados do objeto
+                        String codTemp = funcTemp.getCodFuncionario();
+                        System.out.println("COD: " + codTemp + " | Nome: "+ nomeTemp );
+                    }
+                    System.out.println("Digite o codigo desejado: ");
+                    String funcSel = scanner1.nextLine();
+                    funcionario = buscarFuncionario(funcSel);
+                }while(funcionario==null);
+                System.out.println("O funcionario " + funcionario.getNomeFuncionario() + " foi removido da lista de funcionarios");
+                listaFuncionarios.remove(funcionario);
         }
-            System.out.println("Digite o codigo desejado: ");
-            int funcSel = scanner1.nextInt();
-            System.out.println("O funcionario " + listaFuncionarios.get(funcSel).getNomeFuncionario() + " foi removido da lista de funcionarios");
-            listaFuncionarios.remove(funcSel);
     }
 }
