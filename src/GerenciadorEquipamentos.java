@@ -42,7 +42,6 @@ public class GerenciadorEquipamentos {
 
     public void adicionarEqp(Equipamento equipamento){
         listaEquipamentos.add(equipamento);
-        System.out.println("adicionado o objeto " + equipamento.getDescricaoEqp());
     }
 
     public void removeEquipamento(Equipamento equipamento) {

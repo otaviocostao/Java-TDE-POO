@@ -67,9 +67,7 @@ public class GerenciadorEmprestimos {
             empEscolha = empEscolha-1; //Pegar indice certo do Array
 
             Emprestimos empTemp = listaEmprestimos.get(empEscolha);
-            empTemp.infoEmprestimo();
             Equipamento equipamentoEmp  = empTemp.getEquipamento(); // Armazenando o equipamento do emprestimo
-            equipamentoEmp.infoEquipamento();
             equipamentoEmp.setDisponibilidade("disponivel"); // mudando a disponibilidade do equipamento
             gerenciadorEquipamentos.adicionarEqp(equipamentoEmp);
             gerenciadorEquipamentos.removeEquipamentoIndisponivel(equipamentoEmp);
