@@ -21,7 +21,7 @@ public class GerenciadorFuncionarios {
         String nomeFuncionarioTemp = scanner.nextLine();
         System.out.println("Digite a função do funcionário: ");
         String funcaoFuncionarioTemp = scanner.nextLine();
-        System.out.println("Digite a data de admissão: ");
+        System.out.println("Digite a data de admissão (dd/mm/aaaa): ");
         String dataAdmissaoTemp = scanner.nextLine();
 
         // Instanciando Funcionario com as variaveis que receberam elementos do input
@@ -69,7 +69,7 @@ public class GerenciadorFuncionarios {
             for (Funcionario funcTemp : listaFuncionarios) { // For que percorre os objetos do ArrayList
                 String nomeTemp = funcTemp.getNomeFuncionario(); // Função para exibir os dados do objeto
                 String codTemp = funcTemp.getCodFuncionario();
-                System.out.println(i+1 + ". "+ nomeTemp + "COD: " + codTemp );
+                    System.out.println("COD: " + codTemp + " | Nome: "+ nomeTemp);
                 i++;
             }
             System.out.println("Digite o codigo desejado: ");

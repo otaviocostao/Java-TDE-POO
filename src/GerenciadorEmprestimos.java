@@ -16,25 +16,26 @@ public class GerenciadorEmprestimos {
         scanner.nextLine();
 
         System.out.println("Selecione o equipamento emprestado: ");
-        Equipamento eqpSel = null;
+        Equipamento eqpSel = null; // instanciando o objeto como null
         do {
-            eqpSel = gerenciadorEquipamentos.selectEquipamentosCad();
+            eqpSel = gerenciadorEquipamentos.selectEquipamentosCad(); // Metodo que exibe as opções de equipamentos cadastrados
         }while (eqpSel==null); // Do While para digitar um elemento valido da lista
         scanner.nextLine();
 
-        System.out.println("Digite a data e hora de saída: ");
+        System.out.println("Digite a data e hora de saída (dd/mm/aaaa HH:mm): ");
         String dataSaidaTemp = scanner.nextLine();
-        System.out.println("Digite a data e hora de retorno: ");
+        System.out.println("Digite a data e hora de retorno prevista (dd/mm/aaaa HH:mm): ");
         String dataRetornoTemp = scanner.nextLine();
         System.out.println("Observações: ");
         String obsEmprestimoTemp = scanner.nextLine();
         eqpSel.setDisponibilidade("indisponivel");
+        System.out.println("\n");
 
         Emprestimos emprestimo1 = new Emprestimos(dataSaidaTemp, dataRetornoTemp, funcResp, eqpSel, obsEmprestimoTemp); // Instanciando um emprestimo
         listaEmprestimos.add(emprestimo1); // Adicionando o objeto instanciado no ArrayList
-        gerenciadorEquipamentos.adicionarEqpIndisponivel(eqpSel);
-        gerenciadorEquipamentos.removeEquipamento(eqpSel);
-        emprestimo1.infoEmprestimo();
+        gerenciadorEquipamentos.adicionarEqpIndisponivel(eqpSel); // Adiciona o equipamento ao Array de Equipamentos indisponiveis
+        gerenciadorEquipamentos.removeEquipamento(eqpSel); // Removendo o elemento do Array de Equipamentos disponiveis
+        emprestimo1.infoEmprestimo(); // Informações do emprestimo gerado
         scanner.nextLine();
     }
 
@@ -49,6 +50,7 @@ public class GerenciadorEmprestimos {
         }
     }
 
+    // Metodo para devolver o equipamento emprestado e excluir o emprestimo do array
     public void devolverEquipamento(Scanner scanner, GerenciadorEquipamentos gerenciadorEquipamentos){
         if (listaEmprestimos.isEmpty()) { // Verifica se  o Array está vazio
             System.out.println("Não há emprestimos cadastrados.");
@@ -66,12 +68,13 @@ public class GerenciadorEmprestimos {
             int empEscolha = scanner.nextInt(); // indice do objeto
             empEscolha = empEscolha-1; //Pegar indice certo do Array
 
-            Emprestimos empTemp = listaEmprestimos.get(empEscolha);
-            Equipamento equipamentoEmp  = empTemp.getEquipamento(); // Armazenando o equipamento do emprestimo
-            equipamentoEmp.setDisponibilidade("disponivel"); // mudando a disponibilidade do equipamento
-            gerenciadorEquipamentos.adicionarEqp(equipamentoEmp);
-            gerenciadorEquipamentos.removeEquipamentoIndisponivel(equipamentoEmp);
-            listaEmprestimos.remove(empEscolha); //remove o emprestimo do ArrayList
+            Emprestimos empTemp = listaEmprestimos.get(empEscolha); // Instanciando o emprestimo
+            Equipamento equipamentoEmp  = empTemp.getEquipamento(); // Instanciando o equipamento do emprestimo
+            System.out.println("Equipamento "+ equipamentoEmp.getDescricaoEqp() + " devolvido"); 
+            equipamentoEmp.setDisponibilidade("disponivel"); // mudando a disponibilidade do equipamento para disponivel
+            gerenciadorEquipamentos.adicionarEqp(equipamentoEmp); // Adicionando o equipamento de volta ao Array de equipamentos disponiveis
+            gerenciadorEquipamentos.removeEquipamentoIndisponivel(equipamentoEmp); // Removendo o equipamento do Array de equipamentos indisponiveis
+            listaEmprestimos.remove(empEscolha); //remove o emprestimo do ArrayList de emprestimos
         }
     }
 }

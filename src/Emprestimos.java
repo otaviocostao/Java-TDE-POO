@@ -1,42 +1,56 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Emprestimos {
 
-    // Declaração de variaveis privadas
-    // Elas só podem ser acessadas dentro da classe
-    private String dataHoraSaida;
-    private String dataHoraRetorno;
+    // Declaração de variáveis privadas
+    private LocalDateTime dataHoraSaida;
+    private LocalDateTime dataHoraRetorno;
     private Funcionario funcionarioResponsavel;
     private Equipamento equipamento;
     private String observacoesEmprestimo;
 
-    // Metodo construtor de emprestimos
-    public Emprestimos(String dataHoraSaida, String dataHoraRetorno, Funcionario funcionarioResponsavel,Equipamento equipamento ,String observacoesEmprestimo){
-        this.dataHoraSaida = dataHoraSaida;
-        this.dataHoraRetorno = dataHoraRetorno;
+    // Método construtor de emprestimos
+    public Emprestimos(String dataHoraSaida, String dataHoraRetorno, Funcionario funcionarioResponsavel, Equipamento equipamento, String observacoesEmprestimo) {
+        setDataHoraSaida(dataHoraSaida); // Usar o setter para conversão
+        setDataHoraRetorno(dataHoraRetorno); // Usar o setter para conversão
         this.funcionarioResponsavel = funcionarioResponsavel;
         this.equipamento = equipamento;
         this.observacoesEmprestimo = observacoesEmprestimo;
     }
 
-    // Metodos setters
+    // Métodos setters
     public void setDataHoraSaida(String dataHoraSaida) {
-        this.dataHoraSaida = dataHoraSaida;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            this.dataHoraSaida = LocalDateTime.parse(dataHoraSaida, formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Data e hora de saída inválida: " + dataHoraSaida);
+            this.dataHoraSaida = null; // Ou atribuir um valor padrão
+        }
     }
 
     public void setDataHoraRetorno(String dataHoraRetorno) {
-        this.dataHoraRetorno = dataHoraRetorno;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            this.dataHoraRetorno = LocalDateTime.parse(dataHoraRetorno, formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Data e hora de retorno inválida: " + dataHoraRetorno);
+            this.dataHoraRetorno = null; // Ou atribuir um valor padrão
+        }
     }
-
 
     public void setObservacoesEmprestimo(String observacoesEmprestimo) {
         this.observacoesEmprestimo = observacoesEmprestimo;
     }
 
-    // Metodos Getters
-    public String getDataHoraSaida() {
+    // Métodos Getters
+    public LocalDateTime getDataHoraSaida() {
         return dataHoraSaida;
     }
 
-    public String getDataHoraRetorno() {
+    public LocalDateTime getDataHoraRetorno() {
         return dataHoraRetorno;
     }
 
@@ -52,13 +66,14 @@ public class Emprestimos {
         return funcionarioResponsavel;
     }
 
-    // Metodo para exibir informações do emprestimo
-    public void infoEmprestimo(){
-        System.out.println("--- Informações do emprestimo ---");
-        System.out.println("Funcionario responsável: " + this.funcionarioResponsavel.getNomeFuncionario());
+    // Método para exibir informações do emprestimo
+    public void infoEmprestimo() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        System.out.println("--- Informações do empréstimo ---");
+        System.out.println("Funcionário responsável: " + this.funcionarioResponsavel.getNomeFuncionario());
         System.out.println("Equipamento: " + this.equipamento.getDescricaoEqp());
-        System.out.println("Data e hora de saída: " + this.dataHoraSaida);
-        System.out.println("Data e hora de retorno: " + this.dataHoraRetorno);
-        System.out.println("Observações do emprestimo: " + this.observacoesEmprestimo+ "\n");
+        System.out.println("Data e hora de saída: " + (this.dataHoraSaida != null ? this.dataHoraSaida.format(formatter) : "Data inválida inserida"));
+        System.out.println("Data e hora de retorno: " + (this.dataHoraRetorno != null ? this.dataHoraRetorno.format(formatter) : "Data inválida inserida"));
+        System.out.println("Observações do empréstimo: " + this.observacoesEmprestimo + "\n");
     }
 }

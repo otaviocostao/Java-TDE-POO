@@ -1,4 +1,3 @@
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,13 +20,13 @@ public class GerenciadorEquipamentos {
 
         System.out.println("Digite a descrição do equipamento: ");
         String descricaoEqpTemp = scanner.nextLine();
-        System.out.println("Digite a data da compra: ");
+        System.out.println("Digite a data da compra (dd/mm/aaaa): ");
         String dataCompraTemp = scanner.nextLine();
-        System.out.println("Digite o peso do equipamento: ");
+        System.out.println("Digite o peso do equipamento (Kg): ");
         double pesoEqpTemp = scanner.nextDouble();
-        System.out.println("Digite a largura do equipamento: ");
+        System.out.println("Digite a largura do equipamento (cm): ");
         double larguraEqpTemp = scanner.nextDouble();
-        System.out.println("Digite o comprimento do equipamento: ");
+        System.out.println("Digite o comprimento do equipamento (cm): ");
         double comprimentoEqpTemp = scanner.nextDouble();
         scanner.nextLine(); // Limpar o buffer
         System.out.println("Digite o histórico de manutenção: ");
@@ -40,10 +39,12 @@ public class GerenciadorEquipamentos {
         listaEquipamentos.add(equipamento1); // Adicionando o objeto instanciado no ArrayList de equipamentos
     }
 
+    // Metodo publico para adicionar elemento do Array privado
     public void adicionarEqp(Equipamento equipamento){
         listaEquipamentos.add(equipamento);
     }
 
+    // Metodo publico para remover elemento no Array privado
     public void removeEquipamento(Equipamento equipamento) {
         listaEquipamentos.remove(equipamento);
     }
@@ -58,18 +59,25 @@ public class GerenciadorEquipamentos {
         }
         return false; // Retorna False se não encontrado
     }
-
-    // Buscar equipamento pelo código
+    
+    // Buscar na lista de equipamentos disponíveis
     public Equipamento buscarEquipamento(String codBusca) {
-        for (Equipamento eqpTemp : listaEquipamentos) {  // For que percorre os objetos do ArrayList
-            if (eqpTemp.getCodEquipamento().equals(codBusca)) { // Verifica se o código buscado é o mesmo do elemento
-                return eqpTemp; // Retorna o objeto encontrado
+        for (Equipamento eqpTemp : listaEquipamentos) {
+            if (eqpTemp.getCodEquipamento().equals(codBusca)) {
+                return eqpTemp;
             }
         }
-
-        return null; // Retorna Null se não encontrado
+    
+        // Buscar na lista de equipamentos indisponíveis
+        for (Equipamento eqpTemp : equipamentosIndisponiveis) {
+            if (eqpTemp.getCodEquipamento().equals(codBusca)) {
+                return eqpTemp;
+            }
+        }
+    
+        return null; // Retorna Null se não encontrado em nenhuma das listas
     }
-
+    
     // Listar todos os equipamentos cadastrados
     public void listarEquipamentosCad() {
         if (listaEquipamentos.isEmpty() && equipamentosIndisponiveis.isEmpty()) { // Verifica se  o Array está vazio
@@ -115,6 +123,7 @@ public class GerenciadorEquipamentos {
     }
 
 
+
     public void excluirEquipamento(){
         Equipamento equipamento = null;
             if (verListaVazia()) { // Verifica se  o Array está vazio
@@ -128,22 +137,21 @@ public class GerenciadorEquipamentos {
                     }
 
                     System.out.println("Digite o código do equipamento que deseja remover: ");
-                    String eqpCod = scanner1.nextLine();
-                    equipamento = buscarEquipamento(eqpCod);
-                }while(equipamento == null);
+                    String eqpCod = scanner1.nextLine(); 
+                    equipamento = buscarEquipamento(eqpCod); // Buscando o equipamento pelo código
+                }while(equipamento == null); // While para digitar um código valido
                 System.out.println("O equipamento " + equipamento.getDescricaoEqp() + " foi removido da lista de equipamentos");
-                listaEquipamentos.remove(equipamento);
+                listaEquipamentos.remove(equipamento); // removendo o equipamento do Array de equipamentos disponiveis
             }
     }
 
+    // Metodo publico para adicionar um equipamento ao Array de equipamentos indisponiveis
     public void adicionarEqpIndisponivel(Equipamento equipamento){
-
         equipamentosIndisponiveis.add(equipamento);
     }
 
-
+    // Metodo publico para remover equipamento do Array de equipamentos indisponiveis
     public void removeEquipamentoIndisponivel(Equipamento equipamento){
-
         equipamentosIndisponiveis.removeIf(eq -> eq.getCodEquipamento().equals(equipamento.getCodEquipamento()));
     }
 }

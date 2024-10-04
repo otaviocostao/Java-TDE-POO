@@ -1,21 +1,24 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Funcionario {
 
-    // Declaração de variaveis privadas
-    // Elas só podem ser acessadas dentro da classe
+    // Declaração de variáveis privadas
     private String codFuncionario;
     private String nomeFuncionario;
     private String funcaoFuncionario;
-    private String dataAdmissaoFuncionario;
+    private LocalDate dataAdmissaoFuncionario;
 
-    // Metodo construtor da classe Funcionario
-    public Funcionario(String codFuncionario, String nomeFuncionario, String funcaoFuncionario, String dataAdmissaoFuncionario){
+    // Método construtor da classe Funcionario
+    public Funcionario(String codFuncionario, String nomeFuncionario, String funcaoFuncionario, String dataAdmissaoFuncionario) {
         this.codFuncionario = codFuncionario;
         this.nomeFuncionario = nomeFuncionario;
         this.funcaoFuncionario = funcaoFuncionario;
-        this.dataAdmissaoFuncionario = dataAdmissaoFuncionario;
+        setDataAdmissaoFuncionario(dataAdmissaoFuncionario); // Usar o setter para a data
     }
 
-    // Metodos Setters
+    // Métodos Setters
     public void setCodFuncionario(String codFuncionario) {
         this.codFuncionario = codFuncionario;
     }
@@ -29,10 +32,16 @@ public class Funcionario {
     }
 
     public void setDataAdmissaoFuncionario(String dataAdmissaoFuncionario) {
-        this.dataAdmissaoFuncionario = dataAdmissaoFuncionario;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // ou outro formato desejado
+            this.dataAdmissaoFuncionario = LocalDate.parse(dataAdmissaoFuncionario, formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Data inválida: " + dataAdmissaoFuncionario);
+            this.dataAdmissaoFuncionario = null; // Ou atribuir uma data padrão
+        }
     }
 
-    // Metodos Getters
+    // Métodos Getters
     public String getCodFuncionario() {
         return codFuncionario;
     }
@@ -45,17 +54,16 @@ public class Funcionario {
         return funcaoFuncionario;
     }
 
-    public String getDataAdmissaoFuncionario() {
+    public LocalDate getDataAdmissaoFuncionario() {
         return dataAdmissaoFuncionario;
     }
 
-    // Metodo para exibir informações do funcionarios
-    public void infoFuncionario(){
+    // Método para exibir informações do funcionário
+    public void infoFuncionario() {
         System.out.println("--- Informações do funcionário ---");
-        System.out.println("Código: "+ this.codFuncionario);
-        System.out.println("Nome: "+ this.nomeFuncionario);
-        System.out.println("Função: "+ this.funcaoFuncionario);
-        System.out.println("Data de admissão: "+ this.dataAdmissaoFuncionario + "\n");
+        System.out.println("Código: " + this.codFuncionario);
+        System.out.println("Nome: " + this.nomeFuncionario);
+        System.out.println("Função: " + this.funcaoFuncionario);
+        System.out.println("Data de admissão: " + (this.dataAdmissaoFuncionario != null ? this.dataAdmissaoFuncionario.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "Data inválida inserida") + "\n");
     }
-
 }

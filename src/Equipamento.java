@@ -1,10 +1,13 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Equipamento {
 
-    // Declaração de variaveis privadas
-    // Elas só podem ser acessadas dentro da classe
+    // Declaração de variáveis privadas
     private String codEquipamento;
     private String descricaoEqp;
-    private String dataCompraEqp;
+    private LocalDate dataCompraEqp;
     private double pesoEqp;
     private double larguraEqp;
     private double comprimentoEqp;
@@ -12,21 +15,20 @@ public class Equipamento {
     private String estadoConservacaoEqp;
     private String disponibilidade;
 
-    // Metodo construtor da classe Equipamento
-    public Equipamento(String codEquipamento, String descricaoEqp, String dataCompraEqp, double pesoEqp, double larguraEqp, double comprimentoEqp, String historicoManutencaoEqp, String estadoConservacaoEqp){
+    // Método construtor da classe Equipamento
+    public Equipamento(String codEquipamento, String descricaoEqp, String dataCompraEqp, double pesoEqp, double larguraEqp, double comprimentoEqp, String historicoManutencaoEqp, String estadoConservacaoEqp) {
         this.codEquipamento = codEquipamento;
         this.descricaoEqp = descricaoEqp;
-        this.dataCompraEqp = dataCompraEqp;
+        setDataCompraEqp(dataCompraEqp); // Usar o setter para a data
         this.pesoEqp = pesoEqp;
         this.larguraEqp = larguraEqp;
-        this.comprimentoEqp =comprimentoEqp;
+        this.comprimentoEqp = comprimentoEqp;
         this.historicoManutencaoEqp = historicoManutencaoEqp;
         this.estadoConservacaoEqp = estadoConservacaoEqp;
         this.disponibilidade = "disponivel";
     }
 
-    // Metodos Setters
-
+    // Métodos Setters
     public void setCodEquipamento(String codEquipamento) {
         this.codEquipamento = codEquipamento;
     }
@@ -36,7 +38,13 @@ public class Equipamento {
     }
 
     public void setDataCompraEqp(String dataCompraEqp) {
-        this.dataCompraEqp = dataCompraEqp;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.dataCompraEqp = LocalDate.parse(dataCompraEqp, formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Data inválida: " + dataCompraEqp);
+            this.dataCompraEqp = null; // Ou atribuir uma data padrão
+        }
     }
 
     public void setPesoEqp(double pesoEqp) {
@@ -63,7 +71,7 @@ public class Equipamento {
         this.disponibilidade = disponibilidade;
     }
 
-    // Metodos Getters
+    // Métodos Getters
     public String getCodEquipamento() {
         return codEquipamento;
     }
@@ -72,7 +80,7 @@ public class Equipamento {
         return descricaoEqp;
     }
 
-    public String getDataCompraEqp() {
+    public LocalDate getDataCompraEqp() {
         return dataCompraEqp;
     }
 
@@ -100,18 +108,17 @@ public class Equipamento {
         return disponibilidade;
     }
 
-
-    // Metodo para exibir informações de equipamentos
-    public void infoEquipamento(){
+    // Método para exibir informações de equipamentos
+    public void infoEquipamento() {
         System.out.println("--- Informações do equipamento ---");
-        System.out.println("Código: "+ this.codEquipamento);
-        System.out.println("Descrição: "+ this.descricaoEqp);
-        System.out.println("Data de compra: " + this.dataCompraEqp);
-        System.out.println("Peso: "+ this.pesoEqp+"Kg");
-        System.out.println("Largura: "+ this.larguraEqp);
-        System.out.println("Comprimento: "+ this.comprimentoEqp);
-        System.out.println("Histórico de manutenção: "+ this.historicoManutencaoEqp);
-        System.out.println("Estado de conservação: "+this.estadoConservacaoEqp);
+        System.out.println("Código: " + this.codEquipamento);
+        System.out.println("Descrição: " + this.descricaoEqp);
+        System.out.println("Data de compra: " + (this.dataCompraEqp != null ? this.dataCompraEqp.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "Data inválida inserida"));
+        System.out.println("Peso: " + this.pesoEqp + " Kg");
+        System.out.println("Largura: " + this.larguraEqp + " cm");
+        System.out.println("Comprimento: " + this.comprimentoEqp + " cm");
+        System.out.println("Histórico de manutenção: " + this.historicoManutencaoEqp);
+        System.out.println("Estado de conservação: " + this.estadoConservacaoEqp);
         System.out.println("Disponibilidade: " + this.disponibilidade + "\n");
     }
 }
